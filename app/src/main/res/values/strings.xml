@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Yanxu</string>
+
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+
+
+    <!-- 首页数据-->
+    <string-array name="main">
+        <item>#1模仿微信视频</item>
+        <item>#2Rxjava+retrofit2</item>
+        <item>#3限时的线条</item>
+        <item>#4Fragment框架</item>
+        <item>#5防朋友圈+Greendao</item>
+        <item>#6Greendao</item>
+        <item>#7</item>
+        <item>#8</item>
+        <item>#9</item>
+    </string-array>
+</resources>
