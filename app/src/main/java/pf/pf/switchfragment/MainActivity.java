@@ -15,6 +15,10 @@ import android.view.Window;
 import android.widget.TextView;
 
 import pf.pf.R;
+import pf.pf.ui.mainUI.OneFragment;
+import pf.pf.ui.mainUI.Pager04;
+import pf.pf.ui.mainUI.ThreeFragment;
+import pf.pf.ui.mainUI.TwoFragment;
 
 
 public class MainActivity extends FragmentActivity implements OnClickListener {

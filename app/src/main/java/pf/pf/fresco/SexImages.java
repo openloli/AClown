@@ -29,13 +29,13 @@ public class SexImages extends AppCompatActivity {
     }
 
     private void initImage() {
-        draweeView = (SimpleDraweeView) findViewById(R.id.my_image_view);
-        draweeView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri uri = Uri.parse(new API().apis[new Random().nextInt(new API().apis.length)]);//随机一个url
-                draweeView.setImageURI(uri);
-            }
-        });
+//        draweeView = (SimpleDraweeView) findViewById(R.id.my_image_view);
+//        draweeView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Uri uri = Uri.parse(new API().apis[new Random().nextInt(new API().apis.length)]);//随机一个url
+//                draweeView.setImageURI(uri);
+//            }
+//        });
     }
 }

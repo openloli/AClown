@@ -9,4 +9,5 @@
     <color name="uvv_black">#ff000000</color>
     <color name="uvv_light_gray">#ffF0F0F0</color>
     <color name="uvv_titlebar_bg">#7f000000</color>
+    <color name="bgcolor">#55555555</color>
 </resources>

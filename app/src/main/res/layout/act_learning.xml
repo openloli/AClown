@@ -8,7 +8,7 @@
         android:id="@+id/ll_tabs"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:background="#3F51B5"
         android:orientation="horizontal" >
 
@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="学习1"
+            android:text="学习"
             android:textColor="#ff0000"
             android:textSize="14sp" />
 
@@ -28,7 +28,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="学习2"
+            android:text="圈子"
             android:textColor="#ff0000"
             android:textSize="14sp" />
 
@@ -38,7 +38,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="学习3"
+            android:text="娱乐新闻"
             android:textColor="#ff0000"
             android:textSize="14sp" />
 
@@ -48,7 +48,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="学习4"
+            android:text="视频"
             android:textColor="#ff0000"
             android:textSize="14sp" />
     </LinearLayout>
@@ -59,6 +59,6 @@
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/ll_tabs" />
+        android:layout_above="@id/ll_tabs" />
 
 </RelativeLayout>
