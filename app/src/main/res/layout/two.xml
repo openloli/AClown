@@ -3,16 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#009eff"
-    android:orientation="vertical" >
-    
-<TextView 
+    android:orientation="vertical">
+
+    <pf.friends.view.myrecyclerview.PullToLoadView
+        android:id="@+id/comments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/two"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="50sp"
-        android:textColor="#fff"
-        />
-    
+        android:background="#A3A3A3" />
+
+    <ImageView
+        android:id="@+id/iv_default_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@mipmap/app_network_off"
+        android:visibility="gone" />
+
 </LinearLayout>

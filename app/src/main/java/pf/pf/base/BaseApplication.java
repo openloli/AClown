@@ -2,10 +2,15 @@ package pf.pf.base;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -100,8 +105,25 @@ public class BaseApplication extends Application {
         BaseApplication.mMainThreadId = android.os.Process.myTid();
         BaseApplication.mMainThead = Thread.currentThread();
 
-        Fresco.initialize(this);
+//        Fresco.initialize(this);
+
+        initImageLoader(getApplicationContext());//image
     }
+
+
+    public static void initImageLoader(Context context) {
+        ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(context);
+        config.threadPriority(Thread.NORM_PRIORITY - 2);
+//        config.denyCacheImageMultipleSizesInMemory();//不会在内存中缓存多个大小的图片
+        config.diskCacheFileNameGenerator(new Md5FileNameGenerator());//为了保证图片名称唯一
+//        config.diskCacheSize(50 * 1024 * 1024); // 50 MiB
+        //内存缓存大小默认是：app可用内存的1/8
+        config.tasksProcessingOrder(QueueProcessingType.LIFO);
+        config.writeDebugLogs(); // Remove for release app
+        // Initialize ImageLoader with configuration.
+        ImageLoader.getInstance().init(config.build());
+    }
+
 
     // add Activity
     public void addActivity(Activity activity) {

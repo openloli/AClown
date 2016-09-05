@@ -1,4 +1,4 @@
-package pf.pf.switchfragment;
+package pf.pf.ui.mainUI;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;

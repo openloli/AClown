@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:background="#C4C4C4">
+
+    <LinearLayout
+        android:id="@+id/llayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_news_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:text="非我非威风威风额王菲夫妇额非法违法我如果法国该如何鉴别个好人改变任何金额不高或加热规划局如果不喝酒" />
+
+        <TextView
+            android:id="@+id/tv_news_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="right"
+            android:text="2015-12-31 12:30"
+            android:textColor="#505050"
+            android:textSize="9.5sp" />
+    </LinearLayout>
+</FrameLayout>

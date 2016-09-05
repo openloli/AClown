@@ -20,19 +20,22 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.facebook.fresco:fresco:0.12.0'
-
+    //    compile 'com.facebook.fresco:fresco:0.12.0'//universal-image-loader-1.9.5.jar 的替代方案
+    //    compile 'com.facebook.fresco:animated-gif:0.12.0'//支持gif
     compile 'io.reactivex:rxjava:1.1.5'
     compile 'io.reactivex:rxandroid:1.2.0'
-
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:retrofit-adapters:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
-
     compile 'com.jcodecraeer:xrecyclerview:1.2.7'
     compile 'org.greenrobot:greendao:3.0.0-beta3'
+    //
+    compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'org.jsoup:jsoup:1.9.2'
+    compile files('libs/universal-image-loader-1.9.5.jar')
 }
