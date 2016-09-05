@@ -21,13 +21,14 @@ import pf.friends.bean.EaluationListBean;
 import pf.friends.utils.CommonUtils;
 import pf.friends.utils.ImageUtils;
 import pf.pf.R;
+import pf.pf.base.BaseApplication;
 import pf.pf.ui.mainUI.TwoFragment;
 
 /**
  * Created by mabeijianxi on 2016/1/3.
  */
 public class EaluationGvPicAdaper extends BaseAdapter {
-//    private Context mContext;
+    //    private Context mContext;
     private List<EaluationListBean.EaluationPicBean> mAttachmentsList;
     private ImageLoader mImageLoader = ImageLoader.getInstance();
     private DisplayImageOptions mConfig = new DisplayImageOptions.Builder()
@@ -46,11 +47,11 @@ public class EaluationGvPicAdaper extends BaseAdapter {
     TwoFragment mContext;
 
     public EaluationGvPicAdaper(TwoFragment mContext, List<EaluationListBean.EaluationPicBean> attachments, boolean mIsLoadImage) {
-        mContext = mContext;
+        this.mContext = mContext;
         this.mAttachmentsList = attachments;
         this.mIsLoadImage = mIsLoadImage;
 //        这里我曾经在加载的时候动态获取每个item的宽度在设置，但效果不理想。会出现测量不及时，使总高度变高，于是留下大片空白区域，但多滑动几次又正常了。
-        mImageWidth = (CommonUtils.getScreenSizeWidth( mContext.getActivity()) - CommonUtils.dip2px(mContext.getActivity(), 102)) /2;
+        mImageWidth = (CommonUtils.getScreenSizeWidth(mContext.getActivity()) - CommonUtils.dip2px(mContext.getActivity(), 102)) / 2;
     }
 
     @Override
@@ -76,7 +77,7 @@ public class EaluationGvPicAdaper extends BaseAdapter {
         final ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = View.inflate(mContext, R.layout.item_grid_image, null);
+            convertView = View.inflate(BaseApplication.getApplication(), R.layout.item_grid_image, null);
             holder.iv_image = (ImageView) convertView.findViewById(R.id.iv_image);
 
             setImageParms(holder);
@@ -99,12 +100,12 @@ public class EaluationGvPicAdaper extends BaseAdapter {
             @Override
             public void onClick(View v) {
 //                点击查看大图
-                Intent intent = new Intent(mContext.getActivity(), LookBigPicActivity.class);
+                Intent intent = new Intent(BaseApplication.getApplication(), LookBigPicActivity.class);
                 Bundle bundle = new Bundle();
 
                 setupCoords(holder.iv_image, mAttachmentsList, position);
-                Log.e("log", "imageUrl:"+mAttachmentsList.get(position).imageUrl);
-                Log.e("log", "smallImageUrl:"+mAttachmentsList.get(position).smallImageUrl);
+                Log.e("log", "imageUrl:" + mAttachmentsList.get(position).imageUrl);
+                Log.e("log", "smallImageUrl:" + mAttachmentsList.get(position).smallImageUrl);
                 bundle.putSerializable(LookBigPicActivity.PICDATALIST, (Serializable) mAttachmentsList);
                 intent.putExtras(bundle);
                 intent.putExtra(LookBigPicActivity.CURRENTITEM, position);
@@ -118,40 +119,42 @@ public class EaluationGvPicAdaper extends BaseAdapter {
 
     /**
      * 计算每个item的坐标
+     *
      * @param iv_image
      * @param mAttachmentsList
      * @param position
      */
     private void setupCoords(ImageView iv_image, List<EaluationListBean.EaluationPicBean> mAttachmentsList, int position) {
 //        x方向的第几个
-        int xn=position%3+1;
+        int xn = position % 3 + 1;
 //        y方向的第几个
-        int yn=position/3+1;
+        int yn = position / 3 + 1;
 //        x方向的总间距
-        int h=(xn-1)*CommonUtils.dip2px(mContext.getActivity(),4);
+        int h = (xn - 1) * CommonUtils.dip2px(mContext.getActivity(), 4);
 //        y方向的总间距
-        int v=h;
+        int v = h;
 //        图片宽高
         int height = iv_image.getHeight();
         int width = iv_image.getWidth();
 //        获取当前点击图片在屏幕上的坐标
-        int[] points=new int[2];
+        int[] points = new int[2];
         iv_image.getLocationInWindow(points);
 //        获取第一张图片的坐标
-        int x0=points[0]-(width+h)*(xn-1) ;
-        int y0=points[1]-(height+v)*(yn-1);
+        int x0 = points[0] - (width + h) * (xn - 1);
+        int y0 = points[1] - (height + v) * (yn - 1);
 //        给所有图片添加坐标信息
-        for(int i=0;i<mAttachmentsList.size();i++){
+        for (int i = 0; i < mAttachmentsList.size(); i++) {
             EaluationListBean.EaluationPicBean ealuationPicBean = mAttachmentsList.get(i);
-            ealuationPicBean.width=width;
-            ealuationPicBean.height=height;
-            ealuationPicBean.x=x0+(i%3)*(width+h);
-            ealuationPicBean.y=y0+(i/3)*(height+v)-CommonUtils.getStatusBarHeight(iv_image);
+            ealuationPicBean.width = width;
+            ealuationPicBean.height = height;
+            ealuationPicBean.x = x0 + (i % 3) * (width + h);
+            ealuationPicBean.y = y0 + (i / 3) * (height + v) - CommonUtils.getStatusBarHeight(iv_image);
         }
     }
 
     /**
      * 设置图片的显示大小
+     *
      * @param holder
      */
     private void setImageParms(ViewHolder holder) {

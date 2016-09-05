@@ -40,7 +40,7 @@ public class EaluationAdapter extends RecyclerView.Adapter<EaluationAdapter.Ealu
      * 当高分辨率的时候服务器的图片显得太小，这里优化下显示比例
      */
     private Float fTimes;
-//    private Context mContext;
+    //    private Context mContext;
     private boolean mIsLoadImage = true;
     private ArrayList<EaluationListBean> mEaluationList;
     private EaluationGvPicAdaper mEaluationGvPicAdaper;
@@ -67,11 +67,12 @@ public class EaluationAdapter extends RecyclerView.Adapter<EaluationAdapter.Ealu
     public void setLoadImage(boolean isLoadImage) {
         this.mIsLoadImage = isLoadImage;
     }
+
     TwoFragment mContext;
 
     public EaluationAdapter(TwoFragment context) {
 //        this.mContext = context;
-        mContext = (TwoFragment)context;
+        mContext = context;
         mEaluationList = new ArrayList<>();
 //        适配单图放大比例
         String sTimes = mContext.getResources().getString(R.string.times);
@@ -134,13 +135,13 @@ public class EaluationAdapter extends RecyclerView.Adapter<EaluationAdapter.Ealu
         }
         holder.tv_nickname.setText(ealuationListBean.userName);
         //这几行代码完全是为了假数据好看
-        if(ealuationListBean.content.length()==2){
+        if (ealuationListBean.content.length() == 2) {
             holder.tv_text.setText("我嫂子要了二胎，全家都心疼！只要小家伙一哭，全家人立马抢着抱在怀里，然后拿个奶嘴让他含着。这一招被侄女学会了，只要我哥睡觉打呼噜，侄女都会拿个奶嘴放我哥嘴里！别说还真见效。。。");
-        }else if(ealuationListBean.content.length()==7){
-            holder.tv_text.setText("昨天跟一朋友在大排档喝酒，朋友喝多了，买单时抓住老板娘的手不松，好劝歹劝半小时，旁边的老板真诚的说：“兄弟，她可以让给你，但是不能后悔！老板也是有故事的人啊！" );
-        }else if(ealuationListBean.content.length()==4){
+        } else if (ealuationListBean.content.length() == 7) {
+            holder.tv_text.setText("昨天跟一朋友在大排档喝酒，朋友喝多了，买单时抓住老板娘的手不松，好劝歹劝半小时，旁边的老板真诚的说：“兄弟，她可以让给你，但是不能后悔！老板也是有故事的人啊！");
+        } else if (ealuationListBean.content.length() == 4) {
             holder.tv_text.setText("男友第一次去我家吃饭，因为我晚点所以让他先去。老爸喜欢喝酒，我到家时，他们俩已经喝好一会儿了。我故意说：“老爸，这帅哥是谁啊？”老爸说：“不是你对象吗？”我说：“不是啊，他还没回来呢！”结果老爸高兴地说：“这小伙子不错，把你对象甩了跟他好吧！");
-        }else{
+        } else {
             holder.tv_text.setText(ealuationListBean.content);
         }
 //去掉上面时展开这里
@@ -153,7 +154,8 @@ public class EaluationAdapter extends RecyclerView.Adapter<EaluationAdapter.Ealu
 
     /**
      * 设置回复内容规则
-     *这里用的是自定义的LinearLayout，这样比listview消耗要小一些
+     * 这里用的是自定义的LinearLayout，这样比listview消耗要小一些
+     *
      * @param holder
      * @param evaluatereplysList
      */
@@ -200,8 +202,8 @@ public class EaluationAdapter extends RecyclerView.Adapter<EaluationAdapter.Ealu
 
 
 //                if (attachments.get(0).imageUrl != null||) {
-                    mImageLoader.displayImage(attachments.get(0).smallImageUrl, holder.iv_image, mConfig);
-                    setIconClick(holder, holder.iv_image, attachments.get(0).smallImageUrl, attachments.get(0).imageUrl);
+                mImageLoader.displayImage(attachments.get(0).smallImageUrl, holder.iv_image, mConfig);
+                setIconClick(holder, holder.iv_image, attachments.get(0).smallImageUrl, attachments.get(0).imageUrl);
 //                } else {
 //                    holder.iv_image.setImageResource(R.drawable.home_youpin);
 //                    setIconClick(holder, "null", "null");
@@ -223,11 +225,12 @@ public class EaluationAdapter extends RecyclerView.Adapter<EaluationAdapter.Ealu
 
     /**
      * 设置头像的点击看大图事件，这里为了方便直接把bean类进行了转换传递
+     *
      * @param holder
      * @param miniPicUrl
      * @param picUrl
      */
-    private void setIconClick(final EaluationHolder holder,final ImageView imageView, final String miniPicUrl, final String picUrl) {
+    private void setIconClick(final EaluationHolder holder, final ImageView imageView, final String miniPicUrl, final String picUrl) {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -238,12 +241,12 @@ public class EaluationAdapter extends RecyclerView.Adapter<EaluationAdapter.Ealu
 
                 int height = imageView.getHeight();
                 int width = imageView.getWidth();
-                int[] points=new int[2];
+                int[] points = new int[2];
                 imageView.getLocationInWindow(points);
-                ealuationPicBean.height=height;
-                ealuationPicBean.width=width;
-                ealuationPicBean.x=points[0];
-                ealuationPicBean.y=points[1]- CommonUtils.getStatusBarHeight(imageView);
+                ealuationPicBean.height = height;
+                ealuationPicBean.width = width;
+                ealuationPicBean.x = points[0];
+                ealuationPicBean.y = points[1] - CommonUtils.getStatusBarHeight(imageView);
                 ealuationPicBean.imageUrl = picUrl;
                 ealuationPicBean.smallImageUrl = miniPicUrl;
                 attachments.add(ealuationPicBean);
@@ -266,13 +269,14 @@ public class EaluationAdapter extends RecyclerView.Adapter<EaluationAdapter.Ealu
      * @param position
      */
     private void setManyImage(List<EaluationListBean.EaluationPicBean> attachments, EaluationHolder holder, int position) {
-//         mEaluationGvPicAdaper = (EaluationGvPicAdaper) holder.gv_image.getTag(position);
-//        if(mEaluationGvPicAdaper==null){
+//        mEaluationGvPicAdaper = (EaluationGvPicAdaper) holder.gv_image.getTag(position);
+//        if (mEaluationGvPicAdaper == null) {
 
 //        mIsLoadImage
-        EaluationGvPicAdaper mEaluationGvPicAdaper = new EaluationGvPicAdaper(mContext, attachments, mIsLoadImage);
-//            holder.gv_image.setTag(position,mEaluationGvPicAdaper);
-        holder.gv_image.setAdapter(mEaluationGvPicAdaper);
+            //TODO 临时关闭，mContext问题
+            EaluationGvPicAdaper mEaluationGvPicAdaper = new EaluationGvPicAdaper(mContext, attachments, mIsLoadImage);
+//            holder.gv_image.setTag(position, mEaluationGvPicAdaper);
+            holder.gv_image.setAdapter(mEaluationGvPicAdaper);
 //        }
     }
 
@@ -320,12 +324,12 @@ public class EaluationAdapter extends RecyclerView.Adapter<EaluationAdapter.Ealu
                 Bundle bundle = new Bundle();
                 int height = holder.iv_image.getHeight();
                 int width = holder.iv_image.getWidth();
-                int[] points=new int[2];
+                int[] points = new int[2];
                 holder.iv_image.getLocationInWindow(points);
-                attachments.get(0).height=height;
-                attachments.get(0).width=width;
-                attachments.get(0).x=points[0];
-                attachments.get(0).y=points[1]- CommonUtils.getStatusBarHeight(holder.iv_image);
+                attachments.get(0).height = height;
+                attachments.get(0).width = width;
+                attachments.get(0).x = points[0];
+                attachments.get(0).y = points[1] - CommonUtils.getStatusBarHeight(holder.iv_image);
                 bundle.putSerializable(LookBigPicActivity.PICDATALIST, (Serializable) attachments);
                 intent.putExtras(bundle);
                 intent.putExtra(LookBigPicActivity.CURRENTITEM, 0);
@@ -346,10 +350,9 @@ public class EaluationAdapter extends RecyclerView.Adapter<EaluationAdapter.Ealu
 
     /**
      * 开始跳转动画
-     *
      */
     private void startActivityAnim() {
-        ( mContext.getActivity()).overridePendingTransition(0, 0);
+        (mContext.getActivity()).overridePendingTransition(0, 0);
     }
 
     static class EaluationHolder extends RecyclerView.ViewHolder {
@@ -359,9 +362,9 @@ public class EaluationAdapter extends RecyclerView.Adapter<EaluationAdapter.Ealu
         public TextView tv_text;
         //        可更具情况设置为emoji表情
         public TextView tv_date;
-//        public RatingBar rb_stars;
+        //        public RatingBar rb_stars;
         public CustomGridView gv_image;
-//        public LinearListView lv_comments_details;
+        //        public LinearListView lv_comments_details;
         public FrameLayout fl_image;
 
         public EaluationHolder(View itemView) {
